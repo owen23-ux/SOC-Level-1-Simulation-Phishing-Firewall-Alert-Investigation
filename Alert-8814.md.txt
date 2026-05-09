@@ -1,0 +1,107 @@
+# Case Report – Event ID 8814
+
+## Incident Classification
+
+| Field | Information |
+|-------|-------------|
+| Alert ID | 8814 |
+| Alert Rule | Inbound Email Containing Suspicious External Link |
+| Incident Type | Phishing |
+| Severity Level | Medium |
+| Date and Time Detected | May 3rd 2026 at 19:28 |
+| Time of Activity | Pending – need email timestamp |
+
+## Classification
+
+- [x] True Positive
+- [ ] False Positive
+
+## List of Affected Entities
+
+- Recipient: (to be identified from email details)
+- Source IP: (to be identified from firewall logs if user clicked)
+
+## Reason for Classifying as True Positive
+
+This is a suspected phishing email based on the alert rule. The email contains one or more external links with potentially suspicious characteristics. Without reviewing the full email content, this is classified as a True Positive pending further investigation.
+
+## Investigation Steps Taken
+
+1. Alert was triggered for inbound email containing suspicious external link
+2. Need to review email content for red flags:
+   - Check sender domain for impersonation
+   - Check links for malicious domains
+   - Check for scare tactics or urgent language
+3. Need to search Splunk firewall logs for any connections to domains found in the email
+4. Need to determine if the recipient clicked any links
+
+## Firewall Log Investigation
+
+| Search Query | Result |
+|--------------|--------|
+| Search for domains from email | Pending – email content not yet reviewed |
+| Search for connections from recipient IP | Pending – recipient IP not yet identified |
+
+## Does this alert require escalation?
+
+**NO – unless firewall log shows user clicked and connection was allowed**
+
+### Conditions for Escalation:
+
+| Scenario | Escalation Decision |
+|----------|---------------------|
+| User did NOT click any links | NO escalation – document and educate user |
+| User clicked but firewall BLOCKED | NO escalation – threat contained |
+| User clicked and firewall ALLOWED | YES escalation – potential compromise |
+
+## Recommended Remediation Actions
+
+### If user did NOT click:
+1. Document the incident
+2. Educate user about phishing awareness
+3. Add malicious domain to email blacklist (if identified)
+
+### If user clicked (check firewall logs first):
+1. Force password reset for user account
+2. Enable MFA immediately
+3. Block malicious domain at firewall/proxy
+4. Scan user workstation for malware
+5. Monitor account for 30 days
+
+## List of Attack Indicators (IOCs)
+
+Pending email content review. To be updated.
+
+| IOC Type | Value |
+|----------|-------|
+| Sender | Pending |
+| Malicious Domain | Pending |
+| Malicious URL | Pending |
+| Source IP (user) | Pending |
+
+## Next Steps Required
+
+- [ ] Open email details in SOC Simulator
+- [ ] Copy sender domain and any URLs
+- [ ] Paste email content into this report
+- [ ] Search Splunk for connections to those domains
+- [ ] Check if user clicked any links
+- [ ] Update escalation decision based on findings
+- [ ] Complete remediation actions
+
+## Case Status
+
+- [x] Alert identified
+- [ ] Email content reviewed
+- [ ] Firewall logs checked
+- [ ] Escalation decision made
+- [ ] Remediation actions taken
+- [ ] Case closed
+
+## Case Reported By
+
+Owen Maake – SOC L1 Analyst (Candidate)
+
+## Date Reported
+
+2026-05-09
