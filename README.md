@@ -1,35 +1,42 @@
-# SOC Level 1 Simulation – Phishing & Firewall Alert Investigation
+# SOC Analyst Phishing Investigation – TryHackMe Simulation
 
 ## Overview
-This project documents my investigation of multiple SOC alerts from TryHackMe's SOC Immersive Simulation. The scenario involved phishing emails and a firewall block of a malicious URL.
+This project documents my investigation of two security alerts from the TryHackMe SOC Immersive Simulation - Introduction to Phishing.
+
+## Alerts Investigated
+
+| Alert ID | Type | Severity | Classification |
+|----------|------|----------|----------------|
+| 8816 | Firewall Block | High | True Positive |
+| 8817 | Phishing Email | Medium | True Positive |
 
 ## Key Findings
-- Alert 8816: Firewall blocked connection to malicious bit.ly URL – No escalation needed
-- Alert 8817: User clicked phishing link and firewall allowed connection – Escalated
+
+### Alert 8816
+- User at 10.20.2.17 attempted to access a malicious bit.ly link
+- Firewall BLOCKED the connection
+- VirusTotal: 1/93 vendors flagged as phishing
+- **No escalation needed** – firewall did its job
+
+### Alert 8817
+- User C. Allen received phishing email from fake Microsoft domain
+- User CLICKED the link at 19:35:10
+- Firewall ALLOWED the connection to fake login page
+- **Escalation REQUIRED** – potential credential theft
 
 ## Tools Used
+- Splunk (SIEM) for firewall log analysis
+- VirusTotal for URL and domain reputation checks
 - TryHackMe SOC Simulator
-- Splunk SIEM
-- VirusTotal
-- Firewall logs
 
-## Skills Demonstrated
-- Alert triage
-- Log analysis
-- Phishing investigation
-- Threat intelligence
-- Incident documentation
-
-## Files
-- `Alerts/` – Individual alert details
-- `Evidence/` – Screenshots of logs and VirusTotal results
-- `Reports/` – Complete case reports
-- `Findings/` – Investigation summary
-
-## Status
-- 8816: ✅ Complete (True Positive – No Escalation)
-- 8817: ✅ Complete (True Positive – Escalated)
-- 8814, 8815, 8818: ⏳ Pending
+## Lessons Learned
+1. A blocked connection (Alert 8816) is less urgent than an allowed connection to a malicious site (Alert 8817)
+2. Always check firewall logs to confirm if a user clicked a phishing link
+3. Different source IPs may indicate different users – investigate each separately
+4. Document everything – screenshots, timestamps, and rationale
 
 ## Author
-Owen Maake – SOC L1 Candidate
+Owen Maake – Aspiring SOC L1 Analyst
+
+## Date
+May 2026
